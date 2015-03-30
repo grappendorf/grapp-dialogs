@@ -1,0 +1,47 @@
+{
+  "name": "grapp-dialogs",
+  "description": "Dialog web components based on Polymer elements",
+  "version": "0.0.0",
+  "main": "grapp-dialogs.html",
+  "license": "MIT",
+  "ignore": [
+    "bin",
+    "build",
+    "lib",
+    "node_modules",
+    "src",
+    "test",
+    "tmpl",
+    "package.json",
+    "**/.*",
+    "**/*.log"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "caretaker",
+    "grappendorf"
+  ],
+  "authors": [
+    "Dirk Grappendorf <dirk@grappendorf.net> (http://www.grappendorf.net)"
+  ],
+  "homepage": "https://github.com/grappendorf/grapp-dialogs",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grappendorf/grapp-dialogs.git"
+  },
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.5",
+    "core-icons": "Polymer/core-icons#0.5.5",
+    "paper-dialog": "Polymer/paper-dialog#0.5.5",
+    "paper-button": "Polymer/paper-button#0.5.5",
+    "juicy-html": "Juicy/juicy-html#0.0.20141119",
+    "es6-promise": "2.0.1"
+  },
+  "devDependencies": {
+    "coffee-script": "latest",
+    "jquery": "latest",
+    "web-component-tester": "Polymer/web-component-tester#latest",
+    "happen": "latest"
+  }
+}

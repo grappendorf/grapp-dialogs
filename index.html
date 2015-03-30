@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>grapp-confirmation-dialog web component</title>
+
+  <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
+  <link href="grapp-confirmation-dialog.html" rel="import">
+
+</head>
+
+<body>
+
+  <h1>grapp-confirmation-dialog web component</h1>
+
+  <h2>A confirmation dialog web component</h2>
+
+  <p>
+    <a href="test/index.html">Click here to run the tests...</a>
+  </p>
+
+  <p>
+    <a href="README.md">Click here to read the documentation...</a>
+  </p>
+
+  <p>
+    <a href="CHANGELOG.md">Click here to read the changelog...</a>
+  </p>
+
+  <h2>Demo</h2>
+
+  <input id="button" type="button" value="Delete the Internet">
+
+  <grapp-confirmation-dialog id="dialog1" heading="Here we go!"
+                             yesLabel="Yes, make it so!!!" noLabel="Nahh..."
+                             message="Do you really want to delete the Internet?">
+  </grapp-confirmation-dialog>
+
+  <grapp-confirmation-dialog id="dialog2" heading="No more Internet?"
+                             yesLabel="Yes, yes, yes!!!" noLabel="Nahh..."
+                             yesIcon="check" noIcon="cancel"
+                             message="<b>Sure?</b>" htmlMessage>
+  </grapp-confirmation-dialog>
+
+  <br><br>
+
+  <div id="messages"></div>
+
+  <script>
+    document.querySelector('#button').addEventListener('click', function() {
+      document.querySelector('#dialog1').ask().then(function() {
+        return document.querySelector('#dialog2').ask()
+      }).then(function() {
+        document.querySelector('#messages').innerHTML += '<div>Ok, it\'s gone.</div>';
+      }).catch(function() {
+        document.querySelector('#messages').innerHTML += '<div>Phew!</div>';
+      });
+    });
+  </script>
+
+  <script src="//localhost:35729/livereload.js"></script>
+
+</body>

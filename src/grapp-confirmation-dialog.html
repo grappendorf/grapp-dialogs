@@ -1,0 +1,54 @@
+<!-- build:process -->
+<!--
+<%= copyright %>
+Element: <%= pkg.name %>
+Version: <%= pkg.version %>
+Description: <%= pkg.description %>
+-->
+<!-- /build -->
+
+<link rel="import" href="../core-icons/core-icons.html">
+<link rel="import" href="../paper-dialog/paper-action-dialog.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../juicy-html/juicy-html.html">
+
+<polymer-element name="grapp-confirmation-dialog"
+                 attributes="heading message htmlMessage yesLabel noLabel yesIcon noIcon">
+
+  <template>
+
+    <paper-action-dialog id="dialog" heading="{{heading}}">
+
+      <div vertical layout>
+        <div>
+          <template if="{{! htmlMessage}}">
+            {{message}}
+          </template>
+          <template if="{{htmlMessage}}">
+            <template is="juicy-html" content="{{message}}"></template>
+          </template>
+        </div>
+        <content></content>
+      </div>
+
+      <paper-button id="yes" affirmative raised success on-tap="{{confirm}}">
+        <template if="{{yesIcon}}"><core-icon icon="{{yesIcon}}"></core-icon></template>
+        <span>{{yesLabel}}</span>
+      </paper-button>
+
+      <paper-button id="no" affirmative raised error on-tap="{{cancel}}">
+        <template if="{{noIcon}}"><core-icon icon="{{noIcon}}"></core-icon></template>
+        <span>{{noLabel}}</span>
+      </paper-button>
+
+    </paper-action-dialog>
+
+  </template>
+
+  <script src="../es6-promise/promise.min.js"></script>
+
+  <!-- build:script inline confirmation_dialog -->
+  <script src="grapp-confirmation-dialog.js"></script>
+  <!-- /build -->
+
+</polymer-element>

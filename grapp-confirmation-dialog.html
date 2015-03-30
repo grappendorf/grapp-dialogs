@@ -1,0 +1,90 @@
+
+<!--
+Copyright (c) 2014-2015 Dirk Grappendorf, www.grappendorf.net. All rights reserved.
+This code may only be used under the MIT style license found in the file LICENSE.txt.
+
+Element: grapp-dialogs
+Version: 0.0.0
+Description: Dialog web components based on Polymer elements
+-->
+
+
+<link rel="import" href="../core-icons/core-icons.html">
+<link rel="import" href="../paper-dialog/paper-action-dialog.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../juicy-html/juicy-html.html">
+
+<polymer-element name="grapp-confirmation-dialog"
+                 attributes="heading message htmlMessage yesLabel noLabel yesIcon noIcon">
+
+  <template>
+
+    <paper-action-dialog id="dialog" heading="{{heading}}">
+
+      <div vertical layout>
+        <div>
+          <template if="{{! htmlMessage}}">
+            {{message}}
+          </template>
+          <template if="{{htmlMessage}}">
+            <template is="juicy-html" content="{{message}}"></template>
+          </template>
+        </div>
+        <content></content>
+      </div>
+
+      <paper-button id="yes" affirmative raised success on-tap="{{confirm}}">
+        <template if="{{yesIcon}}"><core-icon icon="{{yesIcon}}"></core-icon></template>
+        <span>{{yesLabel}}</span>
+      </paper-button>
+
+      <paper-button id="no" affirmative raised error on-tap="{{cancel}}">
+        <template if="{{noIcon}}"><core-icon icon="{{noIcon}}"></core-icon></template>
+        <span>{{noLabel}}</span>
+      </paper-button>
+
+    </paper-action-dialog>
+
+  </template>
+
+  <script src="../es6-promise/promise.min.js"></script>
+
+<script type="text/javascript">(function() {
+  Polymer('grapp-confirmation-dialog', {
+    created: function() {
+      this.heading = 'Please confirm this action';
+      this.message = 'Are you sure?';
+      this.yesLabel = 'Yes';
+      this.noLabel = 'No';
+      return this.htmlMessage = false;
+    },
+    ask: function(message) {
+      var promise;
+      if (message) {
+        this.message = message;
+      }
+      promise = new Promise((function(resolve, reject) {
+        this.resolve = resolve;
+        return this.reject = reject;
+      }).bind(this));
+      this.$.dialog.open();
+      return promise;
+    },
+    confirm: function() {
+      this.async(function() {
+        return this.$.dialog.close();
+      });
+      return this.resolve();
+    },
+    cancel: function() {
+      this.async(function() {
+        return this.$.dialog.close();
+      });
+      return this.reject();
+    }
+  });
+
+}).call(this);
+</script>
+
+</polymer-element>
