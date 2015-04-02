@@ -1,0 +1,77 @@
+
+<!--
+Copyright (c) 2014-2015 Dirk Grappendorf, www.grappendorf.net. All rights reserved.
+This code may only be used under the MIT style license found in the file LICENSE.txt.
+
+Element: grapp-dialogs
+Version: 0.0.1
+Description: Dialog web components based on Polymer elements
+-->
+
+
+<link rel="import" href="../core-icons/core-icons.html">
+<link rel="import" href="../paper-dialog/paper-action-dialog.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../juicy-html/juicy-html.html">
+
+<polymer-element name="grapp-message-dialog"
+                 attributes="heading message htmlMessage closeLabel closeIcon">
+
+  <template>
+
+    <paper-action-dialog id="dialog" heading="{{heading}}">
+
+      <div vertical layout>
+        <div>
+          <template if="{{! htmlMessage}}">
+            {{message}}
+          </template>
+          <template if="{{htmlMessage}}">
+            <template is="juicy-html" content="{{message}}"></template>
+          </template>
+        </div>
+        <content></content>
+      </div>
+
+      <paper-button id="close" affirmative raised success on-tap="{{close}}">
+        <template if="{{closeIcon}}"><core-icon icon="{{closeIcon}}"></core-icon></template>
+        <span>{{closeLabel}}</span>
+      </paper-button>
+
+    </paper-action-dialog>
+
+  </template>
+
+  <script src="../es6-promise/promise.min.js"></script>
+
+<script type="text/javascript">(function() {
+  Polymer('grapp-message-dialog', {
+    created: function() {
+      this.heading = 'Message';
+      this.message = 'Click "close" to close';
+      this.closeLabel = 'Close';
+      return this.htmlMessage = false;
+    },
+    show: function(message) {
+      var promise;
+      if (message) {
+        this.message = message;
+      }
+      promise = new Promise((function(resolve) {
+        return this.resolve = resolve;
+      }).bind(this));
+      this.$.dialog.open();
+      return promise;
+    },
+    close: function() {
+      this.async(function() {
+        return this.$.dialog.close();
+      });
+      return this.resolve();
+    }
+  });
+
+}).call(this);
+</script>
+
+</polymer-element>

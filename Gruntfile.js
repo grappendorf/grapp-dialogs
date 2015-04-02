@@ -66,7 +66,8 @@ module.exports = function(grunt) {
         dest: './',
         options: {
           scripts: {
-            confirmation_dialog: ['build/grapp-confirmation-dialog.js']
+            confirmation_dialog: ['build/grapp-confirmation-dialog.js'],
+            message_dialog: ['build/grapp-message-dialog.js']
           },
           data: {
             copyright: grunt.file.read('tmpl/copyright.tmpl')

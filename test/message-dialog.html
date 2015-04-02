@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>grapp-message-dialog tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <script src="../lib/web-component-tester/browser.js"></script>
+  <script src="../lib/coffee-script/extras/coffee-script.js"></script>
+  <script src="../lib/happen/happen.js"></script>
+
+  <link href="../grapp-message-dialog.html" rel="import">
+</head>
+<body>
+
+  <grapp-message-dialog id="dialogShow"></grapp-message-dialog>
+  <grapp-message-dialog id="dialogClose"></grapp-message-dialog>
+
+  <script type="text/coffeescript">
+
+    describe 'Calling the show() method', ->
+
+      it 'shows the messagedialog', (done) ->
+        dialog = document.querySelector '#dialogShow'
+        paperDialog = dialog.shadowRoot.querySelector '#dialog'
+        listener = (e) ->
+          paperDialog.removeEventListener 'core-overlay-open', listener
+          done()
+        paperDialog.addEventListener 'core-overlay-open', listener
+        dialog.show()
+
+    describe 'Clicking the close button', ->
+
+      it 'fulfills the promise', (done) ->
+        dialog = document.querySelector '#dialogClose'
+        dialog.show().then -> done()
+        happen.once dialog.shadowRoot.querySelector('#close'), type: 'tap'
+
+  </script>
+
+  <script>
+  </script>
+
+</body>
+</html>

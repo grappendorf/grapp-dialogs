@@ -7,6 +7,7 @@
 
   <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
   <link href="grapp-confirmation-dialog.html" rel="import">
+  <link href="grapp-message-dialog.html" rel="import">
 
 </head>
 
@@ -47,6 +48,13 @@
 
   <div id="messages"></div>
 
+  <input id="messageButton" type="button" value="Show me a message">
+
+  <grapp-message-dialog id="messageDialog" heading="This is"
+                             closeLabel="Ok" closeIcon="mail"
+                             message="a message in a bottle">
+  </grapp-message-dialog>
+
   <script>
     document.querySelector('#button').addEventListener('click', function() {
       document.querySelector('#dialog1').ask().then(function() {
@@ -56,6 +64,9 @@
       }).catch(function() {
         document.querySelector('#messages').innerHTML += '<div>Phew!</div>';
       });
+    });
+    document.querySelector('#messageButton').addEventListener('click', function() {
+      document.querySelector('#messageDialog').show();
     });
   </script>
 
