@@ -2,7 +2,6 @@ Polymer 'grapp-message-dialog',
 
   created: ->
     @heading = 'Message'
-    @message = 'Click "close" to close'
     @closeLabel = 'Close'
     @htmlMessage = false
 

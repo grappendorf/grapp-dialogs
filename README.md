@@ -27,7 +27,7 @@ Attributes
   * **heading**
   
     - *type:* string
-    - *default:* 'Please confirm this action'
+    - *default:* 'Confirmation'
 
     The title of the confirmation dialog.
 
@@ -35,7 +35,7 @@ Attributes
   * **message**
 
     - *type:* string
-    - *default:* 'Are you sure?'
+    - *default:* undefined
 
     The message text displayed in the dialog body.
 
@@ -130,7 +130,7 @@ Attributes
   * **message**
 
     - *type:* string
-    - *default:* 'Click "close" to close'
+    - *default:* undefined
 
     The message text displayed in the dialog body.
 

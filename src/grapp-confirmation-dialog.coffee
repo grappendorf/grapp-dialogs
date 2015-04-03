@@ -1,8 +1,7 @@
 Polymer 'grapp-confirmation-dialog',
 
   created: ->
-    @heading = 'Please confirm this action'
-    @message = 'Are you sure?'
+    @heading = 'Confirmation'
     @yesLabel = 'Yes'
     @noLabel = 'No'
     @htmlMessage = false
