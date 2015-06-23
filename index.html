@@ -2,13 +2,10 @@
 <html>
 
 <head>
-
   <title>grapp-confirmation-dialog web component</title>
-
-  <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
-  <link href="grapp-confirmation-dialog.html" rel="import">
-  <link href="grapp-message-dialog.html" rel="import">
-
+  <script src='lib/webcomponentsjs/webcomponents-lite.min.js'></script>
+  <link href="build/grapp-confirmation-dialog.html" rel="import">
+  <link href="build/grapp-message-dialog.html" rel="import">
 </head>
 
 <body>
@@ -34,39 +31,43 @@
   <input id="button" type="button" value="Delete the Internet">
 
   <grapp-confirmation-dialog id="dialog1" heading="Here we go!"
-                             yesLabel="Yes, make it so!!!" noLabel="Nahh..."
+                             yes-label="Yes, make it so!!!" no-label="Nahh..."
                              message="Do you really want to delete the Internet?">
   </grapp-confirmation-dialog>
 
+  <div id="comfirm-messages"></div>
+
   <grapp-confirmation-dialog id="dialog2" heading="No more Internet?"
-                             yesLabel="Yes, yes, yes!!!" noLabel="Nahh..."
-                             yesIcon="check" noIcon="cancel"
-                             message="<b>Sure?</b>" htmlMessage>
+                             yes-label="Yes, yes, yes!!!" no-label="Nahh..."
+                             yes-icon="check" no-icon="cancel"
+                             message="<i>Are you <b style='color: red;'>really</b> Sure?</i>" html-message>
   </grapp-confirmation-dialog>
 
-  <br><br>
-
-  <div id="messages"></div>
+  <br>
 
   <input id="messageButton" type="button" value="Show me a message">
 
   <grapp-message-dialog id="messageDialog" heading="This is"
-                             closeLabel="Ok" closeIcon="mail"
+                             close-label="Ok" close-icon="mail"
                              message="a message in a bottle">
   </grapp-message-dialog>
+
+  <div id="message-messages"></div>
 
   <script>
     document.querySelector('#button').addEventListener('click', function() {
       document.querySelector('#dialog1').ask().then(function() {
         return document.querySelector('#dialog2').ask()
       }).then(function() {
-        document.querySelector('#messages').innerHTML += '<div>Ok, it\'s gone.</div>';
+        document.querySelector('#comfirm-messages').innerHTML += '<div>Ok, it\'s gone.</div>';
       }).catch(function() {
-        document.querySelector('#messages').innerHTML += '<div>Phew!</div>';
+        document.querySelector('#comfirm-messages').innerHTML += '<div>Phew!</div>';
       });
     });
     document.querySelector('#messageButton').addEventListener('click', function() {
-      document.querySelector('#messageDialog').show();
+      document.querySelector('#messageDialog').show().then(function() {
+        document.querySelector('#message-messages').innerHTML += '<div>You closed the messsge dialog</div>';
+      })
     });
   </script>
 

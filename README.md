@@ -3,7 +3,7 @@ grapp-dialogs
 
 Dialog web components based on [Polymer elements](https://www.polymer-project.org/0.5/docs/elements/).
 
-Build with Polymer 0.5.5
+Compatible with Polymer 1.0+
 
 
 grapp-confirmation-dialog
@@ -19,10 +19,8 @@ through a parameter to this function.
 ask() returns an ES6 promise that is fulfilled when the user presses the confirmation button and is
 rejected when the user presses the cancellation button.
 
-
-Attributes
+Properties
 ----------
-
 
   * **heading**
   
@@ -80,7 +78,6 @@ Attributes
     
     Optionally adds a core icon to the label of the cancellation button.
 
-
 Methods
 -------
 
@@ -114,10 +111,8 @@ through a parameter to this function.
 
 show() returns an ES6 promise that is fulfilled when the user presses the close button.
 
-
-Attributes
+Properties
 ----------
-
 
   * **heading**
   
@@ -158,7 +153,6 @@ Attributes
     - *default:* undefined
     
     Optionally adds a core icon to the label of the close button.
-
 
 Methods
 -------

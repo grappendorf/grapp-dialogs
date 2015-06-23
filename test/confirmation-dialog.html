@@ -6,11 +6,12 @@
   <title>grapp-confirmation-dialog tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
+  <script src='../lib/webcomponentsjs/webcomponents-lite.min.js'></script>
   <script src="../lib/web-component-tester/browser.js"></script>
   <script src="../lib/coffee-script/extras/coffee-script.js"></script>
   <script src="../lib/happen/happen.js"></script>
 
-  <link href="../grapp-confirmation-dialog.html" rel="import">
+  <link href="../build/grapp-confirmation-dialog.html" rel="import">
 </head>
 <body>
 
@@ -24,11 +25,11 @@
 
       it 'shows the confirmation dialog', (done) ->
         dialog = document.querySelector '#dialogShow'
-        paperDialog = dialog.shadowRoot.querySelector '#dialog'
+        paperDialog = dialog.querySelector '#dialog'
         listener = (e) ->
-          paperDialog.removeEventListener 'core-overlay-open', listener
+          paperDialog.removeEventListener 'iron-overlay-opened', listener
           done()
-        paperDialog.addEventListener 'core-overlay-open', listener
+        paperDialog.addEventListener 'iron-overlay-opened', listener
         dialog.ask()
 
     describe 'Clicking the confirmation button', ->
@@ -36,18 +37,15 @@
       it 'fulfills the promise', (done) ->
         dialog = document.querySelector '#dialogConfirm'
         dialog.ask().then -> done()
-        happen.once dialog.shadowRoot.querySelector('#yes'), type: 'tap'
+        happen.once dialog.querySelector('#yes'), type: 'tap'
 
     describe 'Clicking the cancellation button', ->
 
       it 'rejects the promise', (done) ->
         dialog = document.querySelector '#dialogCancel'
         dialog.ask().catch -> done()
-        happen.once dialog.shadowRoot.querySelector('#no'), type: 'tap'
+        happen.once dialog.querySelector('#no'), type: 'tap'
 
-  </script>
-
-  <script>
   </script>
 
 </body>

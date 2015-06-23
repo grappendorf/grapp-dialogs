@@ -6,11 +6,12 @@
   <title>grapp-message-dialog tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
+  <script src='../lib/webcomponentsjs/webcomponents-lite.min.js'></script>
   <script src="../lib/web-component-tester/browser.js"></script>
   <script src="../lib/coffee-script/extras/coffee-script.js"></script>
   <script src="../lib/happen/happen.js"></script>
 
-  <link href="../grapp-message-dialog.html" rel="import">
+  <link href="../build/grapp-message-dialog.html" rel="import">
 </head>
 <body>
 
@@ -23,11 +24,11 @@
 
       it 'shows the messagedialog', (done) ->
         dialog = document.querySelector '#dialogShow'
-        paperDialog = dialog.shadowRoot.querySelector '#dialog'
+        paperDialog = dialog.querySelector '#dialog'
         listener = (e) ->
-          paperDialog.removeEventListener 'core-overlay-open', listener
+          paperDialog.removeEventListener 'iron-overlay-opened', listener
           done()
-        paperDialog.addEventListener 'core-overlay-open', listener
+        paperDialog.addEventListener 'iron-overlay-opened', listener
         dialog.show()
 
     describe 'Clicking the close button', ->
@@ -35,11 +36,8 @@
       it 'fulfills the promise', (done) ->
         dialog = document.querySelector '#dialogClose'
         dialog.show().then -> done()
-        happen.once dialog.shadowRoot.querySelector('#close'), type: 'tap'
+        happen.once dialog.querySelector('#close'), type: 'tap'
 
-  </script>
-
-  <script>
   </script>
 
 </body>
