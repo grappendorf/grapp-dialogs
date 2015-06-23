@@ -4,57 +4,86 @@ Copyright (c) 2014-2015 Dirk Grappendorf, www.grappendorf.net. All rights reserv
 This code may only be used under the MIT style license found in the file LICENSE.txt.
 
 Element: grapp-dialogs
-Version: 0.0.3
+Version: 0.1.0
 Description: Dialog web components based on Polymer elements
 -->
 
 
-<link rel="import" href="../core-icons/core-icons.html">
-<link rel="import" href="../paper-dialog/paper-action-dialog.html">
-<link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../juicy-html/juicy-html.html">
+<link href="../iron-icons/iron-icons.html" rel="import">
+<link href="../paper-dialog/paper-dialog.html" rel="import">
+<link href="../paper-button/paper-button.html" rel="import">
+<link href="../promise-polyfill/promise-polyfill-lite.html" rel="import" >
 
-<polymer-element name="grapp-message-dialog"
-                 attributes="heading message htmlMessage closeLabel closeIcon">
+<dom-module id="grapp-message-dialog">
 
   <template>
 
-    <paper-action-dialog id="dialog" heading="{{heading}}">
+    <style>
+      #content {
+        @apply(- -layout-vertical);
+        margin-bottom: 1em;
+      }
+    </style>
 
-      <div vertical layout>
-        <div>
-          <template if="{{! htmlMessage}}">
-            {{message}}
-          </template>
-          <template if="{{htmlMessage}}">
-            <template is="juicy-html" content="{{message}}"></template>
-          </template>
-        </div>
+    <paper-dialog id="dialog">
+
+      <h2>[[heading]]</h2>
+
+      <div id="content">
+        <template is="dom-if" if="[[!htmlMessage]]">
+          <div>[[message]]</div>
+        </template>
+        <div id="htmlMessage"></div>
         <content></content>
       </div>
 
-      <paper-button id="close" affirmative raised success on-tap="{{close}}">
-        <template if="{{closeIcon}}"><core-icon icon="{{closeIcon}}"></core-icon></template>
-        <span>{{closeLabel}}</span>
-      </paper-button>
+      <div class="buttons">
+        <paper-button id="close" dialog-confirm autofocus raised success on-tap="close">
+          <template is="dom-if" if="[[closeIcon]]">
+            <iron-icon icon="[[closeIcon]]"></iron-icon>
+          </template>
+          <span>[[closeLabel]]</span>
+        </paper-button>
+      </div>
 
-    </paper-action-dialog>
+    </paper-dialog>
 
   </template>
 
-  <script src="../es6-promise/promise.min.js"></script>
-
 <script type="text/javascript">(function() {
-  Polymer('grapp-message-dialog', {
-    created: function() {
-      this.heading = 'Message';
-      this.closeLabel = 'Close';
-      return this.htmlMessage = false;
+  Polymer({
+    is: 'grapp-message-dialog',
+    properties: {
+      heading: {
+        type: String,
+        value: 'Message'
+      },
+      message: {
+        type: String
+      },
+      htmlMessage: {
+        type: Boolean,
+        value: false
+      },
+      closeLabel: {
+        type: String,
+        value: 'close'
+      },
+      closeIcon: {
+        type: String
+      }
     },
     show: function(message) {
-      var promise;
+      var domBind, elem, promise;
       if (message) {
         this.message = message;
+      }
+      if (this.htmlMessage) {
+        domBind = document.createElement('template', 'dom-bind');
+        elem = domBind.content.ownerDocument.createElement('div');
+        elem.innerHTML = this.message;
+        domBind.content.appendChild(elem);
+        this.$.htmlMessage.appendChild(domBind);
       }
       promise = new Promise((function(resolve) {
         return this.resolve = resolve;
@@ -73,4 +102,4 @@ Description: Dialog web components based on Polymer elements
 }).call(this);
 </script>
 
-</polymer-element>
+</dom-module>

@@ -145,7 +145,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-text-replace');
 
   grunt.registerTask('build', 'Compile all assets and create the distribution files',
-    ['less', 'coffeelint', 'coffee', 'htmlbuild']);
+    ['less', 'coffeelint', 'coffee', 'htmlbuild', 'replace']);
 
   grunt.registerTask('wct-test', function() {
     var
