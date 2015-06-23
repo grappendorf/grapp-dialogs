@@ -1,3 +1,12 @@
+<a name="0.1.0"></a>
+## 0.1.0 (2015-06-23)
+
+
+#### Features
+
+* Upgrade to Polymer 1.0 ([84add7db](http://github.com/grappendorf/grapp-dialogs/commit/84add7dbcb4a10ac7e3a53f10a74d58a9d2ca8f4))
+
+
 <a name="0.0.3"></a>
 ### 0.0.3 (2015-04-03)
 
