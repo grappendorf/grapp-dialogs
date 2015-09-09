@@ -1,3 +1,12 @@
+<a name="0.1.2"></a>
+### 0.1.2 (2015-09-09)
+
+
+#### Bug Fixes
+
+* don't import promise polyfill ([304e25b8](http://github.com/grappendorf/grapp-dialogs/commit/304e25b80b334dd751a95352af2c88327f1bd9c3))
+
+
 <a name="0.1.1"></a>
 ### 0.1.1 (2015-06-23)
 

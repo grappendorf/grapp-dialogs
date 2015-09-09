@@ -1,7 +1,7 @@
 {
   "name": "grapp-dialogs",
   "description": "Dialog web components based on Polymer elements",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "grapp-dialogs.html",
   "license": "MIT",
   "ignore": [
