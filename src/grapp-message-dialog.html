@@ -7,9 +7,9 @@ Description: <%= pkg.description %>
 -->
 <!-- /build -->
 
-<link href="../lib/iron-icons/iron-icons.html" rel="import">
-<link href="../lib/paper-dialog/paper-dialog.html" rel="import">
-<link href="../lib/paper-button/paper-button.html" rel="import">
+<link rel="import" href="../lib/iron-icons/iron-icons.html">
+<link rel="import" href="../lib/paper-dialog/paper-dialog.html">
+<link rel="import" href="../lib/paper-button/paper-button.html">
 
 <dom-module id="grapp-message-dialog">
 
@@ -17,7 +17,6 @@ Description: <%= pkg.description %>
 
     <style>
       #content {
-        @apply(- -layout-vertical);
         margin-bottom: 1em;
       }
     </style>
@@ -47,7 +46,7 @@ Description: <%= pkg.description %>
 
   </template>
 
-  <!-- build:script inline message_dialog -->
+  <!-- build:script inline grapp-message-dialog -->
   <script src="grapp-message-dialog.js"></script>
   <!-- /build -->
 

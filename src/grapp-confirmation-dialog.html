@@ -7,9 +7,9 @@ Description: <%= pkg.description %>
 -->
 <!-- /build -->
 
-<link href="../lib/iron-icons/iron-icons.html" rel="import">
-<link href="../lib/paper-dialog/paper-dialog.html" rel="import">
-<link href="../lib/paper-button/paper-button.html" rel="import">
+<link rel="import" href="../lib/iron-icons/iron-icons.html">
+<link rel="import" href="../lib/paper-dialog/paper-dialog.html">
+<link rel="import" href="../lib/paper-button/paper-button.html">
 
 <dom-module id="grapp-confirmation-dialog">
 
@@ -17,7 +17,6 @@ Description: <%= pkg.description %>
 
     <style>
       #content {
-        @apply(--layout-vertical);
         margin-bottom: 1em;
       }
     </style>
@@ -54,7 +53,7 @@ Description: <%= pkg.description %>
 
   </template>
 
-  <!-- build:script inline confirmation_dialog -->
+  <!-- build:script inline grapp-confirmation-dialog -->
   <script src="grapp-confirmation-dialog.js"></script>
   <!-- /build -->
 
