@@ -5,25 +5,34 @@
   <meta charset="UTF-8">
   <title>grapp-message-dialog tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
   <script src='../lib/webcomponentsjs/webcomponents-lite.min.js'></script>
   <script src="../lib/web-component-tester/browser.js"></script>
+  <script src="../lib/test-fixture/test-fixture-mocha.js"></script>
   <script src="../lib/coffee-script/extras/coffee-script.js"></script>
   <script src="../lib/happen/happen.js"></script>
-
-  <link href="../build/grapp-message-dialog.html" rel="import">
+  <link rel="import" href="../lib/test-fixture/test-fixture.html">
+  <link rel="import" href="../build/grapp-message-dialog.html">
 </head>
 <body>
 
-  <grapp-message-dialog id="dialogShow"></grapp-message-dialog>
-  <grapp-message-dialog id="dialogClose"></grapp-message-dialog>
+  <test-fixture id="dialogShow">
+    <template>
+      <grapp-message-dialog></grapp-message-dialog>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="dialogClose">
+    <template>
+      <grapp-message-dialog></grapp-message-dialog>
+    </template>
+  </test-fixture>
 
   <script type="text/coffeescript">
 
     describe 'Calling the show() method', ->
 
       it 'shows the messagedialog', (done) ->
-        dialog = document.querySelector '#dialogShow'
+        dialog = fixture 'dialogShow'
         paperDialog = dialog.querySelector '#dialog'
         listener = (e) ->
           paperDialog.removeEventListener 'iron-overlay-opened', listener
@@ -34,7 +43,7 @@
     describe 'Clicking the close button', ->
 
       it 'fulfills the promise', (done) ->
-        dialog = document.querySelector '#dialogClose'
+        dialog = fixture 'dialogClose'
         dialog.show().then -> done()
         happen.once dialog.querySelector('#close'), type: 'tap'
 

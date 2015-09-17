@@ -5,26 +5,40 @@
   <meta charset="UTF-8">
   <title>grapp-confirmation-dialog tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
   <script src='../lib/webcomponentsjs/webcomponents-lite.min.js'></script>
   <script src="../lib/web-component-tester/browser.js"></script>
+  <script src="../lib/test-fixture/test-fixture-mocha.js"></script>
   <script src="../lib/coffee-script/extras/coffee-script.js"></script>
   <script src="../lib/happen/happen.js"></script>
-
-  <link href="../build/grapp-confirmation-dialog.html" rel="import">
+  <link rel="import" href="../lib/test-fixture/test-fixture.html">
+  <link rel="import" href="../build/grapp-confirmation-dialog.html">
 </head>
 <body>
 
-  <grapp-confirmation-dialog id="dialogShow"></grapp-confirmation-dialog>
-  <grapp-confirmation-dialog id="dialogConfirm"></grapp-confirmation-dialog>
-  <grapp-confirmation-dialog id="dialogCancel"></grapp-confirmation-dialog>
+  <test-fixture id="dialogShow">
+    <template>
+      <grapp-confirmation-dialog></grapp-confirmation-dialog>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="dialogConfirm">
+    <template>
+      <grapp-confirmation-dialog></grapp-confirmation-dialog>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="dialogCancel">
+    <template>
+      <grapp-confirmation-dialog></grapp-confirmation-dialog>
+    </template>
+  </test-fixture>
 
   <script type="text/coffeescript">
 
     describe 'Calling the ask() method', ->
 
       it 'shows the confirmation dialog', (done) ->
-        dialog = document.querySelector '#dialogShow'
+        dialog = fixture 'dialogShow'
         paperDialog = dialog.querySelector '#dialog'
         listener = (e) ->
           paperDialog.removeEventListener 'iron-overlay-opened', listener
@@ -35,14 +49,14 @@
     describe 'Clicking the confirmation button', ->
 
       it 'fulfills the promise', (done) ->
-        dialog = document.querySelector '#dialogConfirm'
+        dialog = fixture 'dialogConfirm'
         dialog.ask().then -> done()
         happen.once dialog.querySelector('#yes'), type: 'tap'
 
     describe 'Clicking the cancellation button', ->
 
       it 'rejects the promise', (done) ->
-        dialog = document.querySelector '#dialogCancel'
+        dialog = fixture 'dialogCancel'
         dialog.ask().catch -> done()
         happen.once dialog.querySelector('#no'), type: 'tap'
 
