@@ -1,3 +1,12 @@
+<a name="0.1.4"></a>
+### 0.1.4 (2015-12-19)
+
+
+#### Bug Fixes
+
+* remove a previous @$.htmlMessage.innerHTML before adding a new child element ([2f385ff4](http://github.com/grappendorf/grapp-dialogs/commit/2f385ff43e7cc530e5a4487e17b5da36188b4cb2))
+
+
 <a name="0.1.3"></a>
 ### 0.1.3 (2015-09-17)
 
