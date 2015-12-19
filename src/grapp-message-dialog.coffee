@@ -16,6 +16,7 @@ Polymer
       elem = domBind.content.ownerDocument.createElement 'div'
       elem.innerHTML = @message
       domBind.content.appendChild elem
+      @$.htmlMessage.innerHTML = ''
       @$.htmlMessage.appendChild domBind
     promise = new Promise ((resolve) ->
       @resolve = resolve

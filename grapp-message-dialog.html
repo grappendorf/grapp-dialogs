@@ -81,6 +81,7 @@ Description: Dialog web components based on Polymer elements
         elem = domBind.content.ownerDocument.createElement('div');
         elem.innerHTML = this.message;
         domBind.content.appendChild(elem);
+        this.$.htmlMessage.innerHTML = '';
         this.$.htmlMessage.appendChild(domBind);
       }
       promise = new Promise((function(resolve) {
