@@ -20,12 +20,10 @@ Polymer
       domBind.content.appendChild elem
       @$.htmlMessage.innerHTML = ''
       @$.htmlMessage.appendChild domBind
-    promise = new Promise ((resolve, reject) ->
+    @$.dialog.open()
+    new Promise (resolve, reject) =>
       @resolve = resolve
       @reject = reject
-    ).bind @
-    @$.dialog.open()
-    promise
 
   confirm: ->
     @async -> @$.dialog.close()

@@ -18,11 +18,9 @@ Polymer
       domBind.content.appendChild elem
       @$.htmlMessage.innerHTML = ''
       @$.htmlMessage.appendChild domBind
-    promise = new Promise ((resolve) ->
-      @resolve = resolve
-    ).bind @
     @$.dialog.open()
-    promise
+    new Promise (resolve) =>
+      @resolve = resolve
 
   close: ->
     @async -> @$.dialog.close()

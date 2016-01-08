@@ -1,6 +1,6 @@
 
 <!--
-Copyright (c) 2014-2015 Dirk Grappendorf, www.grappendorf.net. All rights reserved.
+Copyright (c) 2014-2016 Dirk Grappendorf, www.grappendorf.net. All rights reserved.
 This code may only be used under the MIT style license found in the file LICENSE.txt.
 
 Element: grapp-dialogs
@@ -72,7 +72,7 @@ Description: Dialog web components based on Polymer elements
       }
     },
     show: function(message) {
-      var domBind, elem, promise;
+      var domBind, elem;
       if (message) {
         this.message = message;
       }
@@ -84,11 +84,12 @@ Description: Dialog web components based on Polymer elements
         this.$.htmlMessage.innerHTML = '';
         this.$.htmlMessage.appendChild(domBind);
       }
-      promise = new Promise((function(resolve) {
-        return this.resolve = resolve;
-      }).bind(this));
       this.$.dialog.open();
-      return promise;
+      return new Promise((function(_this) {
+        return function(resolve) {
+          return _this.resolve = resolve;
+        };
+      })(this));
     },
     close: function() {
       this.async(function() {
